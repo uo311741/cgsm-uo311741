@@ -35,12 +35,13 @@ const sphere = new THREE.Mesh( geometry1, material1 );
 const geometry2 = new THREE.CylinderGeometry( 10, 10, 40, 64 ); 
 const material2 = new THREE.MeshBasicMaterial( {color: 0x0000ff} ); 
 const cylinder = new THREE.Mesh( geometry2, material2 ); 
+cylinder.rotation.set( Math.PI / 5, Math.PI / 5, 0 );
 
 //moviendo los objetos desde el origen de coordenadas para que no se solapen
 const distance = 80;
 cube.position.set(-distance, 0, 0);
-sphere.position.set(0, 0, 0);
-cylinder.position.set(distance, 0, 0);
+cylinder.position.set(0, 0, 0);
+sphere.position.set(distance, 0, 0);
 
 //añadendo los objetos a la escena
 scene.add( cube );
