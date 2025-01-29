@@ -14,7 +14,6 @@ const scene = new THREE.Scene();
 
 //Este código hace que el objeto body de la página sea el elemento padre del canvas que se creará para renderizar la escena. 
 //Este objeto canvas se crea automáticamente mediante la instanciación del renderizador. 
-// A continuación se le especifica un tamaño, que será el tamaño del viewport de la escena, y se añade al árbol del DOM.
 const renderer = new THREE.WebGLRenderer( {antialias: true} );
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
@@ -35,3 +34,11 @@ box.rotation.set( Math.PI / 5, Math.PI / 5, 0 );
 //añadir el objeto creado a la escena y renderizarla
 scene.add( box );
 renderer.render( scene, camera );
+
+//Redimensionando la escena
+window.addEventListener( 'resize', ( ) => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix( );
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    renderer.render( scene, camera );
+    }, false );

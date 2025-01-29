@@ -1,0 +1,61 @@
+import * as THREE from 'three';
+
+import WebGL from 'three/addons/capabilities/WebGL.js';
+
+if ( WebGL.isWebGL2Available() ) {
+    console.log('WebGL supported and works correclty!')
+
+} else {
+	console.warn('WebGL not supported and not working');
+}
+
+//escena
+const scene = new THREE.Scene();
+
+//renderer
+const renderer = new THREE.WebGLRenderer( {antialias: true} );
+renderer.setSize( window.innerWidth, window.innerHeight );
+document.body.appendChild( renderer.domElement );
+
+//cámara
+const camera = new THREE.PerspectiveCamera ( 45, window.innerWidth / window.innerHeight, 1, 4000 );
+camera.position.set( 0, 0, 300 );
+
+//cubo
+const geometry = new THREE.BoxGeometry( 30, 30, 30 ); 
+const material = new THREE.MeshBasicMaterial( {color: 0xff0000} ); 
+const cube = new THREE.Mesh( geometry, material ); 
+
+//esfera
+const geometry1 = new THREE.SphereGeometry( 30, 64, 32 ); 
+const material1 = new THREE.MeshBasicMaterial( {color: 0x00ff00} ); 
+const sphere = new THREE.Mesh( geometry1, material1 ); 
+
+//cilindro
+const geometry2 = new THREE.CylinderGeometry( 10, 10, 40, 64 ); 
+const material2 = new THREE.MeshBasicMaterial( {color: 0x0000ff} ); 
+const cylinder = new THREE.Mesh( geometry2, material2 ); 
+
+//moviendo los objetos desde el origen de coordenadas para que no se solapen
+const distance = 80;
+cube.position.set(-distance, 0, 0);
+sphere.position.set(0, 0, 0);
+cylinder.position.set(distance, 0, 0);
+
+//añadendo los objetos a la escena
+scene.add( cube );
+scene.add( cylinder );
+scene.add( sphere );
+
+
+//rendering 
+renderer.render( scene, camera );
+
+//Redimensionando la escena
+window.addEventListener( 'resize', ( ) => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix( );
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    renderer.render( scene, camera );
+    }, false );
+
