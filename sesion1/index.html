@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title>Informe de prácticas de CGSM (2024-2025)</title>
+        <link rel="stylesheet" type="text/css" href="report.css">
+    </head>
+    <body>
+        <!-- Información general -->
+        <div id="head">
+            <table id="general">
+                <tr>
+                    <th class="header">Nombre:</th>
+                    <td>Angelica Della Vecchia</td>                     
+                </tr>
+                <tr>
+                    <th>Práctica:</th>
+                    <td>1</td> 
+                </tr>
+            </table>
+        </div>
+        <div id="content">
+            <h1>Memoria</h1>
+            <h2>Descripción de la práctica</h2>
+                <p>En esta primera sesión práctica, hemos introducido el uso de WebGL y las posibilidades gráficas en tiempo real que ofrece. Se crearon seis scripts que representaban las principales funcionalidades que proporciona este estándar. </p>
+                <p>Después de configurar el entorno de trabajo, se crearon scripts y páginas HTML para verificar el funcionamiento de WebGL. Además, se implementaron funcionalidades para crear un canvas, redimensionar la escena, posicionar y rotar un objeto dentro de la escena, y colocar múltiples objetos en ella, asegurando que la escena se ajustara dinámicamente al tamaño de la ventana web en caso de redimensionamiento. Además, se aplicaron sombras, luces y materiales utilizando diferentes técnicas, y se creó un objeto 2D utilizando índices y vértices.</p>
+                <p> </p>
+            <h2>Ejercicio 1</h2>
+                    <p>
+                        En primer lugar, se comprobó si el contexto WebGL funcionaba correctamente en el navegador. La solución encontrada fue utilizar una comprobación if-else imprimiendo un mensaje en la consola en caso de funcionamiento o de error. 
+                        En Google Chrome, para desactivar WebGL, el navegador se inició introduciendo la opción «--disable-3d-apis» en la sección «Propiedades» del acceso directo de Chrome.
+                    </p>
+
+                <iframe src="prac1-1.html" class="container">   
+                    Escena 1                
+                </iframe>
+                <img class = "container" src = "img/prac1.png" width = "250" height="150" />
+            <h2>Ejercicio 2</h2>
+                <p>En el ejercicio 2, se creó una escena en la que hay un cubo de material base. La cámara está colocada de tal forma que sólo se muestra una de sus caras, de hecho se percibe como un cuadrado. Se utilizaron los constructores proporcionados por la librería three.js para crear la escena, el renderizador, la cámara y el cubo, para luego añadirlo a la escena y mostrarlo en pantalla.</p>
+                <iframe src = "prac1-2.html" class="container">
+                    Escena 2
+                </iframe>
+            <h2>Ejercicio 3</h2>
+                <p>Aquí hemos girado el cubo mostrado en el ejercicio 2, 36° con respecto a los ejes X e Y. Para realizar la rotación correctamente, los ángulos deben expresarse en radianes. Aquí se puedes apreciar realmente la escena en 3D.Además, la escena se redimensionó para ajustarse al tamaño de la ventana, incluso cuando ésta se redimensiona. </p>
+                <iframe src = "prac1-3.html" class="container">
+                    Escena 3
+            </iframe>
+            <h2>Ejercicio 4</h2>
+                <p>En este ejercicio, visualizamos tres objetos sólidos, situados a la misma distancia a lo largo del eje x: un cubo rojo, un cilindro azul y una esfera verde. El cubo y la esfera se colocan delante de la cámara, sin ninguna rotación, mientras que el cilindro está ligeramente girado a lo largo de los ejes X e Y.
+                    Los objetos se crearon utilizando los constructores de la biblioteca three.js que permiten crear las geometrías sólidas de cubo, esfera y cilindro insertando en ellos los parámetros deseados.
+                </p>
+                <iframe src = "prac1-4.html" class="container">
+                    Escena 4
+                </iframe>
+            <h2>Ejercicio 5</h2>
+                <p>En este ejercicio tenemos la misma visualización que en el ejercicio anterior, pero añadiendo una geometría plana en forma de casa. 
+                    Esta geometría se ha creado a partir de un conjunto de vértices: cuatro para la base de la casa y uno para el tejado. A continuación, se han especificado los índices que representan los triángulos que forman la geometría: dos triángulos forman la base cuadrada de la casa y cuatro triángulos conectan el vértice superior con la base para formar el tejado. La cámara se alejó ligeramente para visualizar bien todos los objetos.</p>
+                    <iframe src = "prac1-5.html" class="container">
+                    Escena 5
+                </iframe>
+            <h2>Ejercicio 6</h2>
+                <p>En el último ejercicio, se han añadido distintos tipos de materiales a las figuras del ejercicio anterior: el cubo utiliza un material de base, el cilindro un material de tipo Lambert y la esfera un material de tipo Phong. Para visualizar correctamente los materiales de tipo Lambert y Phong, se incluyeron efectos de luz: en concreto, se modificaron la luz ambiental, la direccional y la puntual, utilizando de nuevo los componentes que ofrece la librería three.js. No se aplicaron materiales distintos del el de base ni efectos de iluminación a la casita.</p>
+                <iframe src = "prac1-6.html" class="container">
+                    Escena 6
+                </iframe>
+            <h2>Dificultades encontradas</h2>
+                <ol>
+                    Las dificultades encontradas al realizar estos ejercicios fueron las siguientes:
+                    <li>Trabajar con vértices e índices: la disposición incorrecta de los vértices o los índices causó que la geometría no se mostrara correctamente.
+                        Para solucionarlo, se verificaron las coordenadas de los vértices y se comprobó que los índices conectaran de forma adecuada los puntos en el orden correcto.
+                    </li> 
+                    <li>
+                        Gestión de materiales, luces y sombras: el problema fue que las luces y sombras no se visualizaban correctamente en los materiales Phong y Lambert. Para solucionarlo, se realizaron varias pruebas con los parámetros de los materiales y las configuraciones de las luces, ajustando la intensidad y los ángulos hasta lograr un efecto más adecuado.
+                    </li>
+                </ol>
+        </div>
+    </body>
+</html>
