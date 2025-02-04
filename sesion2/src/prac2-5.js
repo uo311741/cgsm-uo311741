@@ -20,39 +20,62 @@ document.body.appendChild( renderer.domElement );
 
 //creación de la cámara
 const camera = new THREE.PerspectiveCamera ( 45, window.innerWidth / window.innerHeight, 1, 4000 );
-camera.position.set( 0, 0, 200 );
+camera.position.set( 0, 0, 10 );
 
-//crea una esfera con textura
-const geometry = new THREE.SphereGeometry( 15, 32, 16 ); 
+//Creación de la Tierra
+const geometry = new THREE.SphereGeometry( 1, 32, 16 ); 
 const mapUrl = "../textures/tierra.gif";   // The file used as texture
 const textureLoader = new THREE.TextureLoader( );  // The object used to load textures
 const map = textureLoader.load( mapUrl );
 const material = new THREE.MeshPhongMaterial( { map: map } );
 const earth = new THREE.Mesh( geometry, material );
 
-const geometry1  = new THREE.SphereGeometry( 16, 33, 17 ); 
+//Creación de la atmosfera
+const geometry1  = new THREE.SphereGeometry( 1.05, 33, 17 ); 
 const atmosphereMap = new THREE.TextureLoader().load("../textures/atmosfera.png");
 var atmosphereMaterial = new THREE.MeshLambertMaterial( { color: 0xFFFFFF, map: atmosphereMap, transparent: true } );
 const atmosphere = new THREE.Mesh( geometry1, atmosphereMaterial );
 
+// Creación de la Luna (0.27 veces la Tierra)
+const moonGeometry = new THREE.SphereGeometry(0.27, 32, 16);
+const moonMap = new THREE.TextureLoader().load("../textures/luna.gif");
+const moonMaterial = new THREE.MeshPhongMaterial({ map: moonMap });
+const moon = new THREE.Mesh(moonGeometry, moonMaterial);
+moon.position.set(3, 0, 0); // Posición relativa a la Tierra
+
+// Distancia Tierra-Luna (no a escala real)
+const distance = 3;
+moon.position.set(Math.sqrt(distance / 2), 0, -Math.sqrt(distance / 2));
+
+// Rotación de la Luna para mostrar siempre la misma cara a la Tierra
+moon.rotation.y = Math.PI;
+
+// Grupo para la Luna (permitirá su órbita)
+const moonGroup = new THREE.Object3D();
+moonGroup.add(moon);
+
+// Inclinación de la órbita lunar
+moonGroup.rotation.x = 0.089;
 
 //luz punctual 
 const light = new THREE.PointLight( 0xffffff, 2000, 200);
 light.position.set( -30, 20, 30);
 scene.add( light );
 
-//Grupo atmosfera-tierra
+//Grupo atmosfera-tierra-luna
+// Crear un grupo para agrupar Tierra, atmósfera y Luna
 const planetGroup = new THREE.Object3D();
 planetGroup.add(earth);
 planetGroup.add(atmosphere);
+planetGroup.add(moonGroup);
 
 //rotacion de 23°
 planetGroup.rotation.set((23 * Math.PI) / 180, 0, 0);  // Inclinación respecto al eje X 
 planetGroup.rotation.set(0, 0, (23 * Math.PI) / 180);  // Inclinación respecto al eje Y
 
-//añadir el objeto creado a la escena y renderizarla
+// Añadir el grupo a la escena
 scene.add(planetGroup);
-renderer.render( scene, camera );
+renderer.render(scene, camera);
 //callback 
 ( loaded ) => { renderer.render( scene, camera ); }
 
