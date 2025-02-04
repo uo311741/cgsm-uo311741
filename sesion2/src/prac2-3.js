@@ -26,12 +26,12 @@ camera.position.set( 0, 0, 200 );
 const geometry = new THREE.SphereGeometry( 15, 32, 16 ); 
 const mapUrl = "../textures/tierra.gif";   // The file used as texture
 const textureLoader = new THREE.TextureLoader( );  // The object used to load textures
-const map = textureLoader.load( mapUrl );
+const map = textureLoader.load( mapUrl, ( loaded ) => { renderer.render( scene, camera ); } );
 const material = new THREE.MeshPhongMaterial( { map: map } );
 const earth = new THREE.Mesh( geometry, material );
 
 const geometry1  = new THREE.SphereGeometry( 16, 33, 17 ); 
-const atmosphereMap = new THREE.TextureLoader().load("../textures/atmosfera.png");
+const atmosphereMap = new THREE.TextureLoader().load("../textures/atmosfera.png", ( loaded ) => { renderer.render( scene, camera ); });
 var atmosphereMaterial = new THREE.MeshLambertMaterial( { color: 0xFFFFFF, map: atmosphereMap, transparent: true } );
 const atmosphere = new THREE.Mesh( geometry1, atmosphereMaterial );
 
@@ -45,8 +45,6 @@ scene.add( light );
 scene.add( earth );
 scene.add( atmosphere );
 renderer.render( scene, camera );
-//callback 
-( loaded ) => { renderer.render( scene, camera ); }
 
 //Redimensionando la escena
 window.addEventListener( 'resize', ( ) => {

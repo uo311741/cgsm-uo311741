@@ -36,25 +36,25 @@ const atmosphereMap = new THREE.TextureLoader().load("../textures/atmosfera.png"
 var atmosphereMaterial = new THREE.MeshLambertMaterial( { color: 0xFFFFFF, map: atmosphereMap, transparent: true } );
 const atmosphere = new THREE.Mesh( geometry1, atmosphereMaterial );
 
-// Creación de la Luna (0.27 veces la Tierra)
+//Creación de la Luna (0.27 veces la Tierra)
 const moonGeometry = new THREE.SphereGeometry(0.27, 32, 16);
 const moonMap = new THREE.TextureLoader().load("../textures/luna.gif", ( loaded ) => { renderer.render( scene, camera )});
 const moonMaterial = new THREE.MeshPhongMaterial({ map: moonMap });
 const moon = new THREE.Mesh(moonGeometry, moonMaterial);
-moon.position.set(3, 0, 0); // Posición relativa a la Tierra
+moon.position.set(3, 0, 0); //posición relativa a la Tierra
 
-// Distancia Tierra-Luna (no a escala real)
-const distance = 3;
+//Distancia Tierra-Luna (no a escala real)
+const distance = 30;
 moon.position.set(Math.sqrt(distance / 2), 0, -Math.sqrt(distance / 2));
 
-// Rotación de la Luna para mostrar siempre la misma cara a la Tierra
+//Rotación de la Luna para mostrar siempre la misma cara a la Tierra
 moon.rotation.y = Math.PI;
 
-// Grupo para la Luna (permitirá su órbita)
+//Grupo para la Luna (permitirá su órbita)
 const moonGroup = new THREE.Object3D();
 moonGroup.add(moon);
 
-// Inclinación de la órbita lunar
+//Inclinación de la órbita lunar
 moonGroup.rotation.x = 0.089;
 
 //luz punctual 
@@ -73,9 +73,46 @@ planetGroup.add(moonGroup);
 planetGroup.rotation.set((23 * Math.PI) / 180, 0, 0);  // Inclinación respecto al eje X 
 planetGroup.rotation.set(0, 0, (23 * Math.PI) / 180);  // Inclinación respecto al eje Y
 
-// Añadir el grupo a la escena
+
+//añadir el grupo a la escena
 scene.add(planetGroup);
-renderer.render(scene, camera);
+
+//reloj para medir el tiempo de animación
+const clock = new THREE.Clock();
+
+//velocidades de rotación
+const earthRotationSpeed = (Math.PI * 2) / 24; //la Tierra rota en 24 horas
+const moonOrbitSpeed = (2 * Math.PI) / (28 * 24); //la Luna orbita en 28 días
+
+//Ángulo de la Luna
+let moonAngle = 0;
+
+//función de animación
+function animate() {
+    const delta = clock.getDelta(); 
+
+    //rotación de la Tierra y la atmósfera
+    const rotation = (delta * Math.PI * 2) / 24; 
+    earth.rotation.y += rotation;
+    atmosphere.rotation.y += rotation * 0.95; 
+
+    //rotación de la Luna alrededor de la Tierra
+    moonAngle += moonOrbitSpeed * delta;
+    moonGroup.rotation.y = moonAngle; // Rotar el grupo de la Luna
+
+    //mantener siempre la misma cara de la Luna hacia la Tierra
+    moon.rotation.y = Math.PI + moonAngle;
+
+    //renderizar la escena
+    renderer.render(scene, camera);
+
+    //solicitar el siguiente frame
+    requestAnimationFrame(animate);
+}
+
+//iniciar la animación
+animate();
+
 
 //Redimensionando la escena
 window.addEventListener( 'resize', ( ) => {

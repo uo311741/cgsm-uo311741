@@ -20,15 +20,15 @@ document.body.appendChild( renderer.domElement );
 
 //creación de la cámara
 const camera = new THREE.PerspectiveCamera ( 45, window.innerWidth / window.innerHeight, 1, 4000 );
-camera.position.set( 0, 0, 100 );
+camera.position.set( 0, 0, 200 );
 
 //crea una esfera con textura
 const geometry = new THREE.SphereGeometry( 15, 32, 16 ); 
 const mapUrl = "../textures/tierra.gif";   // The file used as texture
 const textureLoader = new THREE.TextureLoader( );  // The object used to load textures
-const map = textureLoader.load( mapUrl );
+const map = textureLoader.load( mapUrl, ( loaded ) => { renderer.render( scene, camera ); } );
 const material = new THREE.MeshPhongMaterial( { map: map } );
-const sphere = new THREE.Mesh( geometry, material );
+const earth = new THREE.Mesh( geometry, material );
 
 //luz punctual 
 const light = new THREE.PointLight( 0xffffff, 2000, 200);
@@ -39,10 +39,8 @@ scene.add( light );
 //sphere.rotation.set( Math.PI / 5, Math.PI / 5, 0 );
 
 //añadir el objeto creado a la escena y renderizarla
-scene.add( sphere );
+scene.add( earth );
 renderer.render( scene, camera );
-//callback 
-( loaded ) => { renderer.render( scene, camera ); }
 
 //Redimensionando la escena
 window.addEventListener( 'resize', ( ) => {
