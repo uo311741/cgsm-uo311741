@@ -18,7 +18,7 @@ document.body.appendChild(renderer.domElement);
 
 //creación de la cámara
 const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 4000);
-camera.position.set(0, 0, 200);
+camera.position.set(0, 0, 80);
 
 //creación de la Tierra
 const geometry = new THREE.SphereGeometry(1, 32, 16); 
@@ -57,7 +57,7 @@ moonGroup.rotation.x = 0.089;
 
 //luz puntual
 const light = new THREE.PointLight(0xffffff, 4000, 400);
-light.position.set(-50, 0, 50);
+light.position.set(-30, 0, 20);
 scene.add(light);
 
 //grupo atmósfera-tierra-luna-luna

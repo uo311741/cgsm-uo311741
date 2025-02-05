@@ -36,6 +36,9 @@ scene.add(light);
 
 function animate() {
     requestAnimationFrame(animate); 
+    if (iss) {
+        iss.rotation.y += 0.01;  // Girar alrededor del eje Y
+    }
     renderer.render(scene, camera); 
 }
 

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title>Informe de prácticas de CGSM (2015-2016)</title>
+        <link rel="stylesheet" type="text/css" href="report.css">
+    </head>
+    <body>
+        <!-- Información general -->
+        <div id="head">
+            <table id="general">
+                <tr>
+                    <th class="header">Nombre:</th>
+                    <td>Angelica Della Vecchia</td>                     
+                </tr>
+                <tr>
+                    <th>Práctica:</th>
+                    <td>2</td> 
+                </tr>
+            </table>
+        </div>
+        <div id="content">
+            <h1>Memoria</h1>
+            <h2>Descripción de la práctica</h2>
+                <p>
+                    En esta sesión utilizaremos texturas en la definición de los objetos para darles más realismo, 
+                    para luego animarlos y permitir cierta interacción con el usuario. Finalmente, aprenderemos cómo importar modelos 
+                    de objetos desarrollados con programas de modelado 3D.
+                </p>
+            <h2>Ejercicio 1</h2>
+                <p>
+                    En este ejercicio se aplicó una textura a un cubo utilizando la clase TextureLoader de three.js. Para garantizar que la textura se cargue correctamente antes de renderizar la escena, 
+                    se implementó una función de callback en la función load(). Esto evita que el objeto aparezca sin textura al abrir la página. 
+                </p>
+                <iframe src = "prac2-1.html" class="container">
+                    Escena 1
+                </iframe>
+            <h2>Ejercicio 2</h2>
+                <p>
+                    Aquí se creó un modelo de la Tierra aplicando una textura a una esfera, utilizando un material Phong para mejorar el realismo con reflejos especulares. Además, se agregó una luz puntual para simular la iluminación solar, 
+                    lo que permite observar efectos de luz y sombra en la superficie del planeta.
+                <iframe src = "prac2-2.html" class="container">
+                    Escena 2
+                </iframe>
+            <h2>Ejercicio 3</h2>
+                <p>
+                    Se incorporó una segunda esfera, ligeramente más grande que la Tierra, para representar la atmósfera terrestre. 
+                    A esta se le aplicó una textura con nubes utilizando un material Lambert, que se configuró como transparente y de color blanco en las zonas donde aparecen las nubes. 
+                    Esto permite simular el efecto de una atmósfera alrededor de la superficie terrestre.
+                </p>
+                <iframe src = "prac2-3.html" class="container">
+                    Escena 3
+                </iframe>
+            <h2>Ejercicio 4</h2>
+                <p>
+                    En este ejercicio se inclinó la Tierra 23° en el eje Z (equivalente a 0,36 radianes) para representar la inclinación axial real del planeta. 
+                    Esta inclinación es fundamental para la representación del movimiento orbital y la variación de estaciones.
+                </p>
+            <iframe src = "prac2-4.html" class="container">
+                Escena 4
+            </iframe>
+            <h2>Ejercicio 5</h2>
+                <p>
+                    Aquí se añadió la Luna a la escena, utilizando un material Lambert con una textura realista de su superficie. 
+                    Su tamaño se definió a escala con el de la Tierra (0.27 veces el radio terrestre), 
+                    aunque la distancia no se representó a escala real para mantener ambos cuerpos visibles en la escena.
+                </p>
+            <iframe src = "prac2-5.html" class="container">
+                Escena 5
+            </iframe>
+            <h2>Ejercicio 6</h2>
+                <p>
+                    Se implementó la rotación de la Tierra sobre su propio eje. Para ello, se utilizó la función de animación animate(), 
+                    estableciendo una rotación completa en 24 segundos, equivalente a un día en la simulación. 
+                    Además, la atmósfera gira a una velocidad ligeramente diferente, simulando el movimiento de las nubes en la Tierra.
+                </p>
+            <iframe src = "prac2-6.html" class="container">
+                Escena 6
+            </iframe>
+            <h2>Ejercicio 7</h2>
+                <p>
+                    Aquí se agregó la animación de la Luna en su órbita alrededor de la Tierra. 
+                    Se estableció un tiempo de traslación de 28 segundos, en correspondencia con su período orbital real de 28 días 
+                    (bajo la suposición de que 1 hora equivale a 1 segundo en la simulación). 
+                    Se ajustó su rotación para que mantuviera siempre la misma cara orientada hacia la Tierra, reproduciendo su rotación sincrónica.
+                </p>
+            <iframe src = "prac2-7.html" class="container">
+                Escena 7
+            </iframe>
+            <h2>Ejercicio 8</h2>
+                <p>
+                    En este ejercicio se ha utilizado el lenguaje GLSL para 
+                    crear el efecto visual del Sol mediante shaders personalizados. 
+                    Se ha definido un material ShaderMaterial que usa dos texturas para simular la superficie solar en movimiento.
+                    Se han empleado un vertex shader y un fragment shader para controlar la apariencia del Sol. 
+                    El vertex shader gestiona la posición de los vértices, mientras que el fragment shader define los colores y efectos visuales en 
+                    cada fragmento de la superficie, creando la ilusión de una textura animada.
+                    Para la animación, se ha actualizado un uniforme de tiempo que modifica la apariencia del Sol, 
+                    generando un efecto dinámico. Además, la esfera solar rota lentamente sobre su eje para darle más realismo.
+                </p>
+            <iframe src = "prac2-8.html" class="container">
+                Escena 8
+            </iframe>
+            <h2>Ejercicio 9</h2>
+                <p>
+                    En este ejercicio se importó un modelo 3D de la Estación Espacial Internacional (ISS) en formato COLLADA utilizando ColladaLoader de three.js.
+                    Para ello, se descargó el modelo y se cargó de forma asíncrona en la escena. 
+                    Se aplicó una reescalación para ajustarlo al entorno y se estableció una rotación inicial para mejorar su visualización. 
+                    La carga se gestionó con un LoadingManager, que agrega el modelo a la escena una vez finalizada la descarga.
+                    Además, se añadió una luz ambiental para iluminar la escena de manera uniforme y una animación para que gire alrededor de su eje y.
+                </p>
+            <iframe src = "prac2-9.html" class="container">
+                Escena 9
+            </iframe>
+            <h2>Dificultades encontradas</h2>
+                <p>
+                    <ol>
+                        Las dificultades encontradas en esta sesión de práctica fueron las siguientes:
+                        <li>
+                            <b>Ajuste de la iluminación</b>: encontrar la intensidad y la posición adecuadas para la luz puntual del Sol, 
+                            con el objetivo de iluminar correctamente la escena y asegurar que todos los objetos fueran visibles en pantalla. 
+                            Para solucionarlo, se realizaron múltiples pruebas modificando los parámetros de intensidad, posición y ángulo de la luz.
+                        </li>
+                        <li>
+                            <b>Movimiento de la Luna:</b> conseguir que la Luna girara correctamente alrededor de la Tierra manteniendo siempre la misma 
+                            cara visible y ubicándola a una distancia que permitiera visualizar toda la escena. 
+                            Se solucionó utilizando rotaciones sincronizadas y ajustando manualmente la posición y el radio de la órbita para equilibrar 
+                            la visibilidad y el realismo del movimiento.
+                        </li>
+                        <li>
+                            <b>Carga del modelo ISS: </b> inicialmente se presentaron problemas al cargar el modelo COLLADA de la Estación Espacial 
+                            Internacional. La solución implicó verificar la ruta del archivo, asegurarse de que el formato del modelo fuera compatible 
+                            con ColladaLoader y gestionar la carga de manera asíncrona con un LoadingManager para garantizar que el modelo 
+                            se agregara correctamente a la escena una vez cargado.
+                        </li>
+                    </ol>
+                </p>
+        </div>
+    </body>
+</html>
