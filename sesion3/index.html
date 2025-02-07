@@ -11,35 +11,96 @@
             <table id="general">
                 <tr>
                     <th class="header">Nombre:</th>
-                    <td>Juan Carlos Granda Candás</td>                     
+                    <td>Angelica Della Vecchia</td>                     
                 </tr>
                 <tr>
                     <th>Práctica:</th>
-                    <td>1</td> 
+                    <td>3</td> 
                 </tr>
             </table>
         </div>
         <div id="content">
             <h1>Memoria</h1>
             <h2>Descripción de la práctica</h2>
-                <p>Descripción breve del desarrollo de la práctica respondiendo a las cuestiones que se plantean en el guión.</p>
+                <p>
+                    En esta sesión exploraremos más a fondo la funcionalidad de WebGL y las capacidades avanzadas de Three.js. 
+                    Nos centraremos en la implementación de mapas topológicos para generar efectos de profundidad en las texturas,
+                    el uso de texturas de vídeo, la integración de controles interactivos para ajustar parámetros 
+                    de la escena y la modificación de la posición de la cámara para simular un desplazamiento dentro del entorno 3D.
+                </p>
             <h2>Ejercicio 1</h2>
-                <p>Ejemplo de cómo incluir una escena.</p>
-                <ol>
-                    <li>Desarrollar la escena en su propio fichero html+css+js.</li>
-                    <li>Incrustar el fichero html en este documento utilizando el objeto <span class="code">iframe</span> siguiente. Debe establecerse su propiedad <span class="code">src</span> apuntando al fichero html. Ten cuidado de adjuntar todos los ficheros necesarios.</li>
-                </ol>
-                <iframe class="container">                    
+                <p>
+                    En este código, además de la textura estándar (map), se ha añadido un mapa topológico (bumpMap) para mejorar el nivel de detalle y 
+                    realismo del cubo. El bumpMap permite simular relieves en la superficie del objeto al modificar la forma en que la luz interactúa con él, 
+                    sin necesidad de alterar su geometría. De esta manera, se consigue un efecto de profundidad y textura más definido, 
+                    lo que enriquece la apariencia del material aplicado al cubo.
+                </p>
+                <iframe src = "prac3-1.html" class="container">
+                    Escena 1
                 </iframe>
             <h2>Ejercicio 2</h2>
-                <iframe class="container">
+                <p>
+                    En este código se ha añadido una textura de vídeo a un plano que rota sobre su propio eje. Para ello,
+                    se ha creado un canvas con las mismas dimensiones del vídeo (480x204 píxeles), sobre el cual se actualiza constantemente el fotograma 
+                    capturado del vídeo en ejecución. La textura generada a partir de este canvas se asigna a un material (MeshBasicMaterial) 
+                    y se aplica a un plano (PlaneGeometry). Además, en cada fotograma de la animación, la textura se actualiza solo si
+                    el vídeo tiene datos suficientes (HAVE_ENOUGH_DATA), asegurando una reproducción fluida.
+                 </p>
+                <iframe src = "prac3-2.html" class="container">
                     Escena 2
                 </iframe>
-            <h2>Ejercicio N</h2>
-                <iframe class="container">
-                    Escena N
+            <h2>Ejercicio 3</h2>
+                <p>
+                    En este código se han añadido tres elementos clave para mejorar la interacción y el rendimiento de la escena: 
+                    controlData, stats y GUI. controlData permite modificar dinámicamente la intensidad del mapa de relieve (bumpScale) del material 
+                    del cubo. Stats muestra en pantalla información sobre el rendimiento, como la tasa de fotogramas por segundo (FPS). 
+                    Finalmente, la GUI (Graphical User Interface) permite ajustar visualmente el valor de bumpScale en tiempo real.
+                </p>
+                <iframe src = "prac3-3.html" class="container">
+                    Escena 3
                 </iframe>
+            <h2>Ejercicio 4</h2>
+                <p>
+                    En este código, los cubos están posicionados sobre una rejilla simulada mediante el uso de GridHelper, 
+                    que actúa como un suelo para los objetos. Cada cubo tiene texturas personalizadas en sus caras, 
+                    con una textura especial en una de ellas y texturas estándar en las demás. Además, se ha implementado una interacción 
+                    con el usuario utilizando FirstPersonControls, lo que permite mover la cámara en primera persona dentro de la escena. 
+                    El usuario puede desplazarse y girar la vista a través de los controles del ratón y el teclado, con velocidad ajustable 
+                    en la configuración de los controles.
+                </p>
+            <iframe src = "prac3-4.html" class="container">
+                Escena 4
+            </iframe>
+
             <h2>Dificultades encontradas</h2>
+                <p>
+                    <ol>
+                        Las dificultades encontradas en esta sesión de práctica fueron las siguientes:
+                        <li>
+                            La gestión de la grilla y los objetos implicó dificultades para colocar correctamente los cubos sin 
+                            que se solaparan ni distorsionaran.
+                            <div>Solución: Utilicé un GridHelper como referencia visual y aseguré el posicionamiento de los cubos mediante 
+                            coordenadas relativas y una correcta gestión de sus transformaciones.</div>
+                        </li>
+                        <li>
+                            Cargamento de las texturas de vídeo, especialmente al asegurar de que la textura 
+                            se actualizara solo cuando los datos del vídeo estuvieran completos. 
+                            <div>Solución: Utilicé la propiedad HAVE_ENOUGH_DATA para garantizar que el fotograma del vídeo solo se aplicara 
+                                a la textura cuando estuviera disponible, manteniendo una reproducción fluida.</div>
+                        </li>
+                        <li>
+                            Hacer que las estadísticas aparecieran correctamente en pantalla. 
+                            <div>Solución: Aseguré que el objeto stats.domElement estuviera correctamente agregado al DOM, 
+                            y verifiqué que el proceso de actualización de las estadísticas (stats.update()) se ejecutara en cada 
+                            ciclo de animación para reflejar correctamente el rendimiento en tiempo real</div>
+                        </li>
+                        <li>
+                            Hacer funcionar la GUI para modificar el bumpScale del cubo. 
+                            <div>Solución: ajusté los controles para que se actualizaran en tiempo real, 
+                                vinculando el valor de bumpScale al control deslizante de la interfaz.</div>
+                        </li>
+                    </ol>
+                </p>
         </div>
     </body>
 </html>
