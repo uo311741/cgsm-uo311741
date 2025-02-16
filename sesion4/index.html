@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title>Informe de prácticas de CGSM (2015-2016)</title>
+        <link rel="stylesheet" type="text/css" href="report.css">
+    </head>
+    <body>
+        <!-- Información general -->
+        <div id="head">
+            <table id="general">
+                <tr>
+                    <th class="header">Nombre:</th>
+                    <td>Angelica Della Vecchia</td>                     
+                </tr>
+                <tr>
+                    <th>Práctica:</th>
+                    <td>4</td> 
+                </tr>
+            </table>
+        </div>
+        <div id="content">
+            <h1>Memoria</h1>
+            <h2>Descripción de la práctica</h2>
+                <p>
+                    En eEn esta sesión práctica, nos adentramos en aspectos avanzados de three.js. 
+                    En concreto, utilizaremos sonidos 3D que el usuario percibe que cambian en función de su distancia a la fuente de sonido, 
+                    veremos cómo seleccionar objetos e interactuar con ellos mediante ratón y teclado y, por último, aprenderemos a detectar colisiones.
+                </p>
+            <h2>Ejercicio 1</h2>
+                <p>
+                    En este ejercicio, vamos a añadir dos fuentes de sonido separadas en las dos cajas de la escena. 
+                    El usuario puede moverse por la escena, acercarse a las cajas, pero sigue sin poder oír el sonido, ya que la reproducción automática del sonido está impedida en los navegadores modernos. 
+                    El sonido se denomina 3D porque su intensidad depende de la distancia y la posición entre el usuario y la fuente de sonido. 
+                    Three.js, para insertar sonidos en la escena y hacerlos tridimensionales, proporciona las clases AudioLoader y PositionalAudio.
+                </p>
+                <iframe src = "prac4-1.html" class="container">
+                    Escena 1
+                </iframe>
+            <h2>Ejercicio 2</h2>
+                <p>
+                    En este ejercicio vamos a ver cómo seleccionar objetos dentro de la escena con el ratón. 
+                    En concreto, vamos a conseguir que cuando el cursor pase por encima de una de las dos cajas, 
+                    se imprima un mensaje en la consola indicando el nombre del objeto que se ha seleccionado. 
+                    Para ello, definimos un objeto raycaster que detecte el movimiento del ratón en la escena e identifique 
+                    las intersecciones con los objetos deseados. 
+                 </p>
+                <iframe src = "prac4-2.html" class="container">
+                    Escena 2
+                </iframe>
+            <h2>Ejercicio 3</h2>
+                <p>
+                    En este ejercicio, vamos a implementar la interacción con los objetos seleccionados a través del teclado.
+                    En concreto, vamos a conseguir que una vez seleccionada una caja con el ratón, al pulsar la barra espaciadora 
+                    se reproduzca el sonido asociado a esa caja y cambie una de las caras de la caja tras esta interacción. 
+                    Para ello, se han definido 2 tipos de materiales, correspondientes a las texturas que deben tener las cajas 
+                    cuando el sonido está apagado, y un material correspondiente a la apariencia una vez encendidos.
+                    Con addEventListener capturamos la pulsación de la barra espaciadora dentro de la escena cuando se selecciona una caja. 
+                </p>
+                <iframe src = "prac4-3.html" class="container">
+                    Escena 3
+                </iframe>
+            <h2>Ejercicio 4</h2>
+                <p>
+                    En el último ejercicio se trataron las colisiones entre la cámara y los objetos de la escena. 
+                    En concreto, se procuró que la cámara no atravesara las dos cajas, sino que quedara bloqueada por su presencia. 
+                    De nuevo, se utilizó el objeto raycaster y se definió un vector de las direcciones permitidas a la cámara para manejar 
+                    las colisiones: dibujando rayos a lo largo de las direcciones definidas, se calcula la distancia entre la cámara y el final del rayo, 
+                    si ésta es menor que una distancia mínima previamente definida, entonces se está produciendo una colisión.
+                </p>
+            <iframe src = "prac4-4.html" class="container">
+                Escena 4
+            </iframe>
+
+            <h2>Dificultades encontradas</h2>
+                <p>
+                    <ol>
+                        Las dificultades encontradas en esta sesión de práctica fueron las siguientes:
+                        <li>
+                            Hacer que el sonido salga exactamente de las cajas
+                            <div>Solución: Después de crear los sonidos, añádelos respectivamente a los objetos que identifican las 2 cajas.</div>
+                        </li>
+                        <li>
+                            Al pasar el ratón por encima de las cajas, el mensaje en la consola de que se había seleccionado una caja no se imprimía correctamente.
+                            <div>Solución: Asigna respectivamente al atributo 'name' de cada uno de los dos objetos, un nombre identificativo que se imprime en la consola.</div>
+                        </li>
+                        <li>
+                            Cuando se seleccionaba una caja, el sonido asociado se iniciaba correctamente, pero la textura de ambas cajas cambiaba. 
+                            <div>Solución: Crea dos materiales distintos, aunque idénticos, asociados a las cajas cuando los sonidos estén apagados para que la textura 
+                            se modifique correctamente.</div>
+                        </li>
+                    </ol>
+                </p>
+        </div>
+    </body>
+</html>
