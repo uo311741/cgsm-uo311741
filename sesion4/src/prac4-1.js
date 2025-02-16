@@ -64,6 +64,36 @@ box2.position.set(-200, 25, 0);
 box1.rotation.y = Math.PI/4;
 box2.rotation.y = -Math.PI/4;
 
+//Audio box1
+const listener1 = new THREE.AudioListener();
+camera.add( listener1 );
+
+const audioLoader1 = new THREE.AudioLoader();
+const sound1 = new THREE.PositionalAudio( listener1 );
+audioLoader1.load( "sounds/376737_Skullbeatz___Bad_Cat_Maste.ogg", ( buffer ) => {
+    sound1.setBuffer( buffer );
+    sound1.setRefDistance( 20 );
+    sound1.setLoop( true );
+    sound1.setRolloffFactor( 1 );
+    //sound.play(); // Modern browsers do not allow sound to start without user interaction
+});
+box1.add( sound1 );
+
+//Audio box2 
+const listener2 = new THREE.AudioListener();
+camera.add( listener2 );
+
+const audioLoader2 = new THREE.AudioLoader();
+const sound2 = new THREE.PositionalAudio( listener2 );
+audioLoader2.load( "sounds/dog.ogg", ( buffer ) => {
+    sound2.setBuffer( buffer );
+    sound2.setRefDistance( 20 );
+    sound2.setLoop( true );
+    sound2.setRolloffFactor( 1 );
+    //sound.play(); // Modern browsers do not allow sound to start without user interaction
+});
+box2.add( sound2 );
+
 
 scene.add( box1 );
 scene.add( box2 );
