@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title>Informe de prácticas de CGSM (2015-2016)</title>
+        <link rel="stylesheet" type="text/css" href="report.css">
+    </head>
+    <body>
+        <!-- Información general -->
+        <div id="head">
+            <table id="general">
+                <tr>
+                    <th class="header">Nombre:</th>
+                    <td>Angelica Della Vecchia</td>                     
+                </tr>
+                <tr>
+                    <th>Práctica:</th>
+                    <td>5</td> 
+                </tr>
+            </table>
+        </div>
+        <div id="content">
+            <h1>Memoria</h1>
+            <h2>Descripción de la práctica</h2>
+                <p>
+                    En esta sesión hemos explorado la tecnología MPEG-DASH, trabajando con flujos de video distribuidos y adaptativos. 
+                    Probamos la reproducción de videos en diferentes formatos e introdujimos el concepto de archivos MPD (Media Presentation Description).
+                    Utilizamos la herramienta DASH IF Player, proporcionada por el DASH Industry Forum, para reproducir los flujos de video y analizamos 
+                    cómo el motor selecciona dinámicamente la calidad según las condiciones de red. También separamos el audio del video para comprender mejor su funcionamiento.
+                    Además, configuramos un servidor para alojar los archivos MPD, permitiendo su reproducción desde un entorno propio. 
+                    Finalmente, integramos un video en una textura, asignándole un archivo MPD para su reproducción en un entorno gráfico. 
+                </p>
+                <p>
+                    NOTA:  para visualizar correctamente los videos, es necesario acceder a la máquina virtual que está presente en el archivo y 
+                    activarla como servidor HTTP. La carpeta en la que se encuentra la máquina virtual ha sido comprimida para poder subirla a github. 
+                    Los archivos MPD y los videos están almacenados dentro de esa máquina virtual.
+                </p>
+            <h2>Ejercicio 1</h2>
+            <h3>
+                Manifiesto 1
+            </h3>
+            <p>Preguntas</p>
+            <ol>
+                <li>
+                    ¿Cuántas codificaciones de audio distintas puede utilizar el cliente para adaptarse a condiciones cambiantes de la red?
+                </li>
+                <span>Solo hay una codificación de audio, entonces el cliente no tiene opciones para adaptarse a condiciones cambiantes de la red en cuanto al audio.</span>
+                
+                <li>
+                    ¿Y de vídeo?
+                </li>
+                <span>Contiene cuatro codificaciones de vídeo.</span>
+
+                <li>
+                    ¿Cuántas resoluciones de vídeo distintas puede usar el cliente? Indica cuáles.
+                </li>
+                <span>El cliente puede usar solo una resolución de video: 854x480</span>
+            </ol>
+                <h3>
+                    Manifiesto 2
+                </h3>
+                <p>Preguntas</p>
+                <ol>
+                    <li>
+                        ¿Cuántas codificaciones de audio distintas puede utilizar el cliente para adaptarse a condiciones cambiantes de la red?
+                    </li>
+                    <span>Solo hay una codificación de audio, entonces el cliente no tiene opciones para adaptarse a condiciones cambiantes de la red en cuanto al audio.</span>
+                    
+                    <li>
+                        ¿Y de vídeo?
+                    </li>
+                    <span>Contiene tres codificaciones de vídeo.</span>
+                    <li>
+                        ¿Cuántas resoluciones de vídeo distintas puede usar el cliente? Indica cuáles.
+                    </li>
+                    <span>El cliente puede usar tres distintas resoluciones de vídeo: 512x288, 768x432, 1280x720</span>
+                </ol>
+
+                
+            <h2>Ejercicio 2</h2>
+                <p>
+                    En este ejercicio, hemos creado un reproductor de video en una página HTML utilizando Dash.js. 
+                    Se configuraron varias URL que apuntan a diferentes archivos de manifiesto MPD 
+                    (archivos que contienen información sobre cómo debe reproducirse un video, como la resolución y la tasa de bits).
+                    El objetivo era probar si cada uno de estos manifiestos MPD, que fueron creados en la máquina virtual y configurados 
+                    en un servidor HTTP, se reproduce correctamente en el reproductor. Sin embargo, en esta prueba solo se está 
+                    reproduciendo un video para verificar su funcionamiento.
+                 </p>
+                <iframe src = "prac5-1.html" class="container">
+                    Escena 2
+                </iframe>
+            <h2>Ejercicio 3</h2>
+                <p>
+                    En este ejercicio, retomamos el modelo del ejercicio prac3-2.html, donde había una superficie rectangular giratoria a la cual se le había aplicado 
+                    una textura de video. En este caso, la textura de video se aplica utilizando un archivo MPD en lugar de un archivo de video tradicional.
+                    El archivo MPD contiene información sobre cómo debe reproducirse el video, como las diferentes resoluciones y formatos disponibles.
+                    Se utiliza un reproductor Dash.js para cargar el archivo MPD y mostrar el video en la superficie. 
+                    Al inicializar el reproductor, se le indica la URL del archivo MPD, y el reproductor se encarga de gestionar la reproducción del video de acuerdo 
+                    a la información contenida en el archivo MPD.
+                </p>
+                <iframe src = "prac5-2.html" class="container">
+                    Escena 3
+                </iframe>
+            <h2>Dificultades encontradas</h2>
+                <p>
+                    <ol>
+                        Las dificultades encontradas en esta sesión de práctica fueron las siguientes:
+                        <li>
+                            Conectar PuTTY a la máquina virtual
+                            <div>Solución: Se creó un puerto para permitir la comunicación entre PuTTY y la máquina virtual.</div>
+                        </li>
+                        <li>
+                            Cargar correctamente el archivo MPD en el reproductor Dash.js
+                            <div>Solución: Se verificó que la URL del archivo MPD era correcta y que el formato era compatible con Dash.js.</div>
+                        </li>
+                    </ol>
+                </p>
+        </div>
+    </body>
+</html>
