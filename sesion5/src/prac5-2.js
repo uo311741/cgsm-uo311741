@@ -28,8 +28,8 @@ camera.position.set( 0, 0, 1000 );
 const video = document.getElementById( 'player' );
 
 const image = document.createElement( 'canvas' );
-image.width = 1920;  // Video width
-image.height = 1080; // Video height
+image.width = 1280;  
+image.height = 720;
 const imageContext = image.getContext( '2d' );
 imageContext.fillStyle = '#000000';
 imageContext.fillRect( 0, 0, image.width - 1, image.height - 1 );
@@ -40,7 +40,7 @@ const material = new THREE.MeshBasicMaterial( { map: texture } );
 const wall = new THREE.Mesh( new THREE.PlaneGeometry( image.width, image.height, 4, 4 ), material );
 scene.add( wall );
 
-const manifestUrl = 'http://localhost:60080/sintel_final.mpd'; 
+const manifestUrl = 'http://localhost:8080/mpd/sintel_final.mpd'; 
 const player = dashjs.MediaPlayer().create();
 player.initialize(document.querySelector("#player"), manifestUrl, true);
 
