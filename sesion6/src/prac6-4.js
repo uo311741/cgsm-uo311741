@@ -31,8 +31,8 @@ navigator.mediaDevices.getUserMedia({ video: true, audio: false })
 
 // Creación del canvas para la textura de vídeo
 const image = document.createElement('canvas');
-image.width = 480;
-image.height = 204;
+image.width = 1280;  
+image.height = 720;
 const imageContext = image.getContext('2d');
 imageContext.fillStyle = '#000000';
 imageContext.fillRect(0, 0, image.width - 1, image.height - 1);
