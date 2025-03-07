@@ -1,6 +1,7 @@
 module.exports = {
     mode: "development",
     entry: {
+        "prac6-1": "./src/prac6-1.js"
     },
     devtool: 'inline-source-map',
     devServer: {
