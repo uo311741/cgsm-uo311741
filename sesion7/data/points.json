@@ -1,0 +1,47 @@
+[
+    {
+        "latitude": 41.90343,
+        "longitude": 12.51400,
+        "height": 150
+    },
+    {
+        "latitude": 41.90420,
+        "longitude": 12.51450,
+        "height": 150
+    },
+    {
+        "latitude": 41.90500,
+        "longitude": 12.51578,
+        "height": 150
+    },
+    {
+        "latitude": 41.90420,
+        "longitude": 12.51700,
+        "height": 150
+    },
+    {
+        "latitude": 41.90343,
+        "longitude": 12.51750,
+        "height": 150
+    },
+    {
+        "latitude": 41.90260,
+        "longitude": 12.51700,
+        "height": 150
+    },
+    {
+        "latitude": 41.90180,
+        "longitude": 12.51578,
+        "height": 150
+    },
+    {
+        "latitude": 41.90260,
+        "longitude": 12.51450,
+        "height": 150
+    },
+    {
+        "latitude": 41.90343,
+        "longitude": 12.51400,
+        "height": 150
+    }
+]
