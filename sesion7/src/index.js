@@ -62,8 +62,23 @@ for (let i = 0; i < trajectory_points.length; i++) {
         );
         manualOrientation.addSample(time, fixedOrientation);
     }
+    else {
+        if (i === 0) {
+            const fixedOrientation = Cesium.Transforms.headingPitchRollQuaternion(
+                position,
+                new Cesium.HeadingPitchRoll(Cesium.Math.toRadians(90), 0, 0)
+            );
+            manualOrientation.addSample(time, fixedOrientation);
+        } else {
+            // Traiettorie: orientamento dinamico lungo il volo
+            const orientation = velocityOrientation.getValue(time);
+            if (orientation) {
+                manualOrientation.addSample(time, orientation);
+            }
+        }
+    }
 
-
+    
     viewer.entities.add({
         description: `Location: (${current.longitude}, ${current.latitude}, ${current.height})`,
         position: position,
